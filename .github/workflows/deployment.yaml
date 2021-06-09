@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Get yarn cache dir
         id: yarn-dir-cache
-        run: echo "::set-output name-dir::$(yarn dir cache)"
+        run: echo "::set-output name-dir::$(yarn cache dir)"
       - name: Use nodejs
         uses: actions/setup-node@v2
         with:
@@ -24,7 +24,7 @@ jobs:
       - name: Setup yarn cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-dir-cache.outputs.dir }}
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock')}}
           restore-keys: |
             ${{ runner.os }}-modules-
@@ -35,3 +35,5 @@ jobs:
         run: yarn lint
       - name: Run tests
         run: yarn test
+      - name: Build the project
+        run: yarn build
