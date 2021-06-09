@@ -1,24 +1,54 @@
 # Pantanal ecommerce website:
 
 Homepage view:
-![screenshot](backend/src/uploads/product.homepage.png)
+![screenshot](src/uploads/product.homepage.png)
 
 Product details view:
-![screenshot](backend/src/uploads/product.details.png)
+![screenshot](src/uploads/product.details.png)
 
 Cart view:
-![screenshot](backend/src/uploads/cart.png)
+![screenshot](src/uploads/cart.png)
 
 Admin dashboard view:
-![screenshot](backend/src/uploads/admin.dashboard.png)
+![screenshot](src/uploads/admin.dashboard.png)
 
-## Tests performed during development
+### Built With
 
-User supertest result:
-![screenshot](backend/src/uploads/user.test.png)
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [supertest](https://www.npmjs.com/package/supertest)
 
-Product supertest result:
-![screenshot](backend/src/uploads/product.test.png)
+<!-- GETTING STARTED -->
 
-Cart supertest result:
-![screenshot](backend/src/uploads/cart.test.png)
+## Getting Started
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/gnyokota/backend-ecommerce.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. `npm run build`
+   compiles the app into .js files for production to the `dist` folder.
+4. `npm run watch`
+   runs the app from `src` folder in the development mode.
+   Run [http://localhost:PORT](http://localhost:PORT) for http requests.
+   PS: The port should be defined in the .env or app.ts files.
+5. `npm run test`
+   launches the all test from the `test` folder.
