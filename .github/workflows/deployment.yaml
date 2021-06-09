@@ -38,6 +38,7 @@ jobs:
         run: yarn build
       - name: Login to Heroku Container registry
         env:
+          # It is inside the repo
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:login
       - name: Build and push on Heroku
