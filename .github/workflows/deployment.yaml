@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-modules-
             ${{ runner.os }}-
       - name: Install dependencies
-        uses: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
       - name: Check lint
         run: yarn lint
       - name: Run tests
