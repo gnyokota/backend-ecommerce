@@ -72,7 +72,7 @@ const createProduct = async (
     .field('qty', (product.price as number).toString())
     .attach(
       'image',
-      '/Users/Giovana/Documents/Bootcamp/Integrify-code/ft7-fullstack-assignment/backend/src/uploads/2021-05-24T11:35:47.172Z61pHAEJ4NML._AC_UX679_.jpg'
+      'test/controllers/2021-05-24T11:35:47.172Z61pHAEJ4NML._AC_UX679_.jpg'
     )
     .set('Authorization', `Bearer ${token}`)
     .then((res) => res.body)
