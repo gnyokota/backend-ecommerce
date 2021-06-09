@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
 import productModel from '../models/product'
-import { UserDocument } from '../models/user'
 import productServices from '../services/productService'
 import {
   NotFoundError,

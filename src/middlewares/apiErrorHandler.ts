@@ -6,8 +6,8 @@ import logger from '../util/logger'
 export default function (
   error: ApiError,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
+  // next: NextFunction
 ) {
   if (error.source) {
     logger.error(error.source)
