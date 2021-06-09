@@ -1,4 +1,3 @@
-# Pantanal ecommerce website:
 
 Homepage view:
 ![screenshot](src/uploads/product.homepage.png)
