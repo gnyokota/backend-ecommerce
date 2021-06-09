@@ -1,5 +1,4 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import cors from 'cors'
 
 import apiErrorHandler from './middlewares/apiErrorHandler'
@@ -30,5 +29,10 @@ app.use('/api/v1/cart', cartRoutes)
 
 // Custom API error handler
 app.use(apiErrorHandler)
+
+//check if the server is running:
+app.get('/', (req, res) => {
+  res.send('Server is running properly ✌️')
+})
 
 export default app

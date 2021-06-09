@@ -24,6 +24,7 @@ mongoose
       console.log('  Press CTRL-C to stop\n')
     })
   })
+
   .catch((err: Error) => {
     console.log(
       'MongoDB connection error. Please make sure MongoDB is running. ' + err
