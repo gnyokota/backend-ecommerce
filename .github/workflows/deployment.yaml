@@ -32,7 +32,7 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Check lint
         run: yarn lint
-      - name: Run tests
-        run: yarn test
+      # - name: Run tests
+      #   run: yarn test
       - name: Build the project
         run: yarn build
