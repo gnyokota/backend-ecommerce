@@ -32,6 +32,10 @@ jobs:
         run: yarn install --frozen-lockfile
       # - name: Check lint
       #   run: yarn lint
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku login
       - name: Build the project
         run: yarn build
       - name: Deploy to Heroku
