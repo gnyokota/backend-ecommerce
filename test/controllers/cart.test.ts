@@ -70,10 +70,7 @@ const createProduct = async (
     .field('size', product.size as string)
     .field('generalRating', (product.generalRating as number).toString())
     .field('qty', (product.price as number).toString())
-    .attach(
-      'image',
-      '/Users/Giovana/Documents/Bootcamp/Integrify-code/ft7-fullstack-assignment/backend/src/uploads/2021-05-24T11:35:47.172Z61pHAEJ4NML._AC_UX679_.jpg'
-    )
+    .attach('image', '')
     .set('Authorization', `Bearer ${token}`)
     .then((res) => res.body)
 }
