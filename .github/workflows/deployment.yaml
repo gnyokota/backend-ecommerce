@@ -13,43 +13,30 @@ jobs:
       - name: Checkout the application
         # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
         uses: actions/checkout@v2
-      - name: Get yarn cache dir
-        id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Use nodejs
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Setup yarn cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock')}}
-          restore-keys: |
-            ${{ runner.os }}-modules-
-            ${{ runner.os }}-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Check lint
-        run: yarn lint
-      # - name: Run tests
-      #   run: yarn test
-      - name: install heroku
-        run: sudo snap install heroku
-      - name: Build the project
-        run: yarn build
-      - name: Updating Ubuntu system and Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: sudo apt update && sudo apt install heroku neofetch
-      - name: Checking the info
-        run: neofetch
-
-      - uses: akhileshns/heroku-deploy@v3.8.8
-        with:
-          heroku_email: gnyokota@gmail.com
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          branch: HEAD
-          useforce: false
-          dynamicFiles: false
+      - name: Add remote origin
+        run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+      - name: Deploy backend to heroku
+        run: git push --force heroku `git subtree split --prefix server HEAD`:master
+      # - name: Get yarn cache dir
+      #   id: yarn-cache-dir
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Use nodejs
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: ${{ matrix.node }}
+      # - name: Setup yarn cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir.outputs.dir }}
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock')}}
+      #     restore-keys: |
+      #       ${{ runner.os }}-modules-
+      #       ${{ runner.os }}-
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
+      # - name: Check lint
+      #   run: yarn lint
+      # # - name: Run tests
+      # #   run: yarn test
+      # - name: Build the project
+      #   run: yarn build
