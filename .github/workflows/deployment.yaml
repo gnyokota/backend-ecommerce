@@ -4,7 +4,7 @@ on:
     branches: [develop]
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         node: [14.x]
@@ -32,14 +32,10 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Check lint
         run: yarn lint
-      - name: Run tests
-        run: yarn test
+      # - name: Run tests
+      #   run: yarn test
       - name: Build the project
         run: yarn build
-      - name: Update Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: sudo apt update && sudo apt install heroku
       - name: Login to Heroku Container registry
         env:
           # It is inside the repo
