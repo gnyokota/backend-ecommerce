@@ -34,6 +34,8 @@ jobs:
         run: yarn lint
       # - name: Run tests
       #   run: yarn test
+      - name: install heroku
+        run: snap install heroku
       - name: Build the project
         run: yarn build
       - name: Updating Ubuntu system and Heroku
