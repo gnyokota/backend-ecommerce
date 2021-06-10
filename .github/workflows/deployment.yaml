@@ -36,16 +36,18 @@ jobs:
       #   run: yarn test
       - name: Build the project
         run: yarn build
-      - name: Login to Heroku Container registry
-        env:
-          # It is inside the repo
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
-      - name: Build and push on Heroku
+      - name: Updating Ubuntu system and Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
-      - name: Release on Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
+        run: sudo apt update && sudo apt install heroku neofetch
+      - name: Checking the info
+        run: neofetch
+
+      - uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_email: gnyokota@gmail.com
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          branch: HEAD
+          useforce: false
+          dynamicFiles: false
