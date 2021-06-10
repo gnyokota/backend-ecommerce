@@ -4,7 +4,7 @@ on:
     branches: [main]
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [14.x]
@@ -30,21 +30,15 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      # - name: Check lint
-      #   run: yarn lint
+      - name: Check lint
+        run: yarn lint
       - name: Build the project
         run: yarn build
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Deploy project on Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
-          heroku_email: 'gnyokota@gmail.com'
-
-      # - name: Deploy to Heroku
-      #   env:
-      #     HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
-      #     HEROKU_APP_NAME: 'your-app-name-here'
-      #   if: github.ref == 'refs/heads/main' && job.status == 'success'
-      #   run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git origin/main:main
+          heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
       # - name: Run tests
       #   run: yarn test
