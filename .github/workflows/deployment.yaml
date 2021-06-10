@@ -35,7 +35,7 @@ jobs:
       # - name: Run tests
       #   run: yarn test
       - name: install heroku
-        run: snap install heroku
+        run: sudo snap install heroku
       - name: Build the project
         run: yarn build
       - name: Updating Ubuntu system and Heroku
