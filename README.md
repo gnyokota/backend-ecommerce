@@ -1,4 +1,3 @@
-
 Homepage view:
 ![screenshot](src/uploads/product.homepage.png)
 
@@ -20,6 +19,7 @@ Admin dashboard view:
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [supertest](https://www.npmjs.com/package/supertest)
 
+<!-- GETTING STARTED -->
 <!-- GETTING STARTED -->
 
 ## Getting Started
