@@ -13,36 +13,41 @@ jobs:
       - name: Checkout the application
         # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
         uses: actions/checkout@v2
-      - name: Get yarn cache dir
-        id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Use nodejs
-        uses: actions/setup-node@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          node-version: ${{ matrix.node }}
-      - name: Setup yarn cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock')}}
-          restore-keys: |
-            ${{ runner.os }}-modules-
-            ${{ runner.os }}-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      # - name: Check lint
-      #   run: yarn lint
-      - name: Login to Heroku Container registry
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku login
-      - name: Build the project
-        run: yarn build
-      - name: Deploy to Heroku
-        env:
-          HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
-          HEROKU_APP_NAME: 'your-app-name-here'
-        if: github.ref == 'refs/heads/main' && job.status == 'success'
-        run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git origin/main:main
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+          heroku_email: 'gnyokota@gmail.com'
+      # - name: Get yarn cache dir
+      #   id: yarn-cache-dir
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Use nodejs
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: ${{ matrix.node }}
+      # - name: Setup yarn cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir.outputs.dir }}
+      #     key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock')}}
+      #     restore-keys: |
+      #       ${{ runner.os }}-modules-
+      #       ${{ runner.os }}-
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
+      # # - name: Check lint
+      # #   run: yarn lint
+      # - name: Login to Heroku Container registry
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      #   run: heroku login
+      # - name: Build the project
+      #   run: yarn build
+      # - name: Deploy to Heroku
+      #   env:
+      #     HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+      #     HEROKU_APP_NAME: 'your-app-name-here'
+      #   if: github.ref == 'refs/heads/main' && job.status == 'success'
+      #   run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git origin/main:main
       # - name: Run tests
       #   run: yarn test
