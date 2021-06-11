@@ -32,7 +32,7 @@ app.use(apiErrorHandler)
 
 //check if the server is running:
 app.get('/', (req, res) => {
-  res.send('Server is running properly 😊')
+  res.send('Server is running properly 😊😉')
 })
 
 export default app
