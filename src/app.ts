@@ -5,6 +5,7 @@ import apiErrorHandler from './middlewares/apiErrorHandler'
 import userRoutes from './routers/userRoutes'
 import productRoutes from './routers/productRoutes'
 import cartRoutes from './routers/cartRoutes'
+import { cloudinaryConfig } from './config/cloudinaryConfig'
 
 const app = express()
 

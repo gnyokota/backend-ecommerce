@@ -91,8 +91,9 @@ export const updateUser = async (
   try {
     const inputData = req.body
     const id = req.params.userId
+    const password = bcrypt.hashSync(req.body.password, 10)
 
-    res.json(await userServices.updateUser(id, inputData))
+    res.json(await userServices.updateUser(id, inputData, password))
   } catch (error) {
     next(new NotFoundError('User not found', error))
   }

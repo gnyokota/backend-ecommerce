@@ -11,7 +11,8 @@ type CreateUserType = (user: UserDocument) => Promise<UserToken>
 type signInUserType = (email: string, password: string) => Promise<UserToken>
 type UpdateUserType = (
   userId: string,
-  inputData: Partial<UserDocument>
+  inputData: Partial<UserDocument>,
+  password: string
 ) => Promise<UserDocument>
 type DeleteUserType = (userId: string) => Promise<UserDocument | null>
 
@@ -73,7 +74,8 @@ const signInUser: signInUserType = async (email: string, password: string) => {
 
 const updateUser: UpdateUserType = async (
   userId: string,
-  inputData: Partial<UserDocument>
+  inputData: Partial<UserDocument>,
+  password: string
 ) => {
   try {
     const user = await UserModel.findById(userId).exec()
@@ -90,8 +92,8 @@ const updateUser: UpdateUserType = async (
     if (inputData.email) {
       user.email = inputData.email
     }
-    if (inputData.password) {
-      user.password = inputData.password
+    if (password) {
+      user.password = password
     }
 
     if (

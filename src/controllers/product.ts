@@ -7,6 +7,7 @@ import {
   BadRequestError,
   InternalServerError,
 } from '../helpers/apiError'
+import cloudinary from '../config/cloudinaryConfig'
 
 //GET all Request
 export const findAllProducts = async (
@@ -43,7 +44,9 @@ export const createProduct = async (
 ) => {
   try {
     const inputData = req.body
-    const imagePath = req.file.path
+    const result = await cloudinary.uploader.upload(req.file.path)
+
+    const image = result.secure_url
 
     const newProduct = new productModel({
       title: inputData.title,
@@ -56,7 +59,7 @@ export const createProduct = async (
         color: inputData.color,
         size: inputData.size,
       },
-      image: imagePath,
+      image: image,
       generalRating: inputData.generalRating ? inputData.generalRating : 0,
       reviews: [],
     })
