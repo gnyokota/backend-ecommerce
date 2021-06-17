@@ -46,7 +46,6 @@ export const createProduct = async (
     const inputData = req.body
 
     const result = await cloudinary.uploader.upload(req.file.path)
-    console.log('test cloudinary', req.file.path, result.secure_url)
     const image = result.secure_url
 
     const newProduct = new productModel({
