@@ -13,7 +13,6 @@ app.set('port', PORT || 3000)
 
 // Use common 3rd-party middlewares
 app.use(express.json())
-app.use('/src/uploads', express.static('src/uploads'))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
