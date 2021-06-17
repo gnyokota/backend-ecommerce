@@ -1,14 +1,4 @@
-Homepage view:
-![screenshot](src/uploads/product.homepage.png)
-
-Product details view:
-![screenshot](src/uploads/product.details.png)
-
-Cart view:
-![screenshot](src/uploads/cart.png)
-
-Admin dashboard view:
-![screenshot](src/uploads/admin.dashboard.png)
+# Pantanal ecommerce app
 
 ### Built With
 
@@ -19,7 +9,6 @@ Admin dashboard view:
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [supertest](https://www.npmjs.com/package/supertest)
 
-<!-- GETTING STARTED -->
 <!-- GETTING STARTED -->
 
 ## Getting Started
